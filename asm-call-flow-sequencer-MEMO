@@ -1,0 +1,88 @@
+ [src2asm]
+c의 경우, c++로는 안되는 코드는 어쩌냐?(예외)
+
+ [sequencer]
+proc_name:
+jump = call
+then...
+
+remove .xxx ...
+
+basic block start at 
+    proc_name:
+basic block end at
+    .cfi_endproc
+
+compare instruction only
+compare full string
+compare ...
+
+read.
+if str is "XXX:":
+    add entry {'XXX':sequence} to dict.
+elif str is "call":
+    str = str.split('\t')[1] # callee proc name
+elif:
+    str = str.split('\t')[0] # instruction
+
+   src_file  -> [g++ -S]
+-> asm_code  -> [split,lstrip]
+-> commands  -> [get-inst-only]
+-> inst&proc -> [get-proc-dict]
+-> proc_dict -> [get-sequence]
+-> sequence
+
+instruction 중에서 rep ret의 경우 그냥 ret임.(특별케이스)
+ret가 포함된 경우 ret로 바꿔주도록 하자.
+
+
+ [str-mapper] (for optimization)
+map str to unique int or char.
+다만 uniqueness가 모든 시퀀스 사이에 공유되어야 함.
+환경에 deploy되었을 때 어떻게 작동할지 결정해야 함.
+
+ [comparator]
+//문자열/리스트 관계없이 작동해야 함
+알고리즘을 마음대로 넣을 수 있어야 함.
+
+//일단 gene 방식 이용 -> match 점수만 따짐. 
+is_similar 함수 T/F
+    기준을 설정 가능.
+
+test data 생성을 위한 툴이 필요함.
+테스팅 환경을 꾸미면 될 듯.
+
+sequence matching은 statement reordering에 
+취약할 수 밖에 없음. 물론 약간 바꾼 정도로는
+힘들지만 진짜 빡세게 순서를 바꾸면
+찾기 힘들 것임
+그러면 어떻게 하는가?
+그래프 비교를 통해서 할 수 있다고 생각함.
+근데 프로시저를 적게 쓰는 경우는 또 못 쓴다..
+
+ [result viewer]
+표절 measure를 다음과 같이 한다
+    하나의 문제에 대해서 모든 소스 pair의 점수 계산.
+    점수를 x축, 거기 속하는 pair 개수를 y축으로 
+    그래프를 그린다.
+
+    그래프에서 일정 이상이 되면 표절로 판단할 수 있다.
+
+    점수를 여러가지 방법(다양한 src-dna)으로 뽑으면
+    리니어 리그레션 등을 쓸 수 있을지도.
+
+ <INTEGRATION>
+만든 프로그램은 이후 채점 과정에서 사용된다.
+perl에서 python 프로그램을 호출하게 될 것.
+
+
+ <PLAN>
+파일로 입력하기
+    입력 인터페이스 정의하기(얼마나? 무엇을? 어떻게?)
+str2int로 최적화하기 - 문제 단위 맵핑
+문제 단위로 결과 내기
+결과를 그래프로 plotting하기
+compare 알고리즘 바꾸기 쉽게하기
+성혜씨 시퀀스를 받는 인터페이스 정의하기
+
+

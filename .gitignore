@@ -1,0 +1,5 @@
+*.swp
+*.taghl
+*.pyc
+*.vim
+tags
