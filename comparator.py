@@ -13,6 +13,7 @@ def dp_variables(a, b):
     #a00000
 
 def match_score(a,b):
+    ''' a,b must be same sequence type. '''
     (len_a, len_b, memo) = dp_variables(a,b)
 
     for y in range(len_a+1):
