@@ -15,29 +15,30 @@ s1 = preprocessor.get_asm('./long/f4.cpp')
 string = preprocessor.get_asm('./tests/fact.cpp')
 ###############
 str2 = preprocessor.get_asm('./tests/origin.cpp')
+
 #print(string)
-asmarr = string.split('\n')
+#asmarr = string.split('\n')
 #print(asmarr)
 
-rmhead = map(lambda s:s.lstrip(), asmarr)
-print('----splited, striped----')
-print(rmhead)
+#rmhead = map(lambda s:s.lstrip(), asmarr)
+#print('----splited, striped----')
+#print(rmhead)
 
 def is_not_inst(s):
     return (len(s) != 0 and s[0] != '.')
-filtered = filter(is_not_inst, rmhead)
-print('----remove dot cmd----')
-for e in filtered: print e
+#filtered = filter(is_not_inst, rmhead)
+#print('----remove dot cmd----')
+#for e in filtered: print e
 
 def inst2str(s):
     splited_arr = s.split('\t')
     if splited_arr[0] == 'call':
         return splited_arr[1]
     return splited_arr[0]
-inst_list = map(inst2str, filtered)
+#inst_list = map(inst2str, filtered)
 #inst_list = map(lambda s:s.split('\t')[0], filtered)
-print('-------')
-for e in inst_list: print e
+#print('-------')
+#for e in inst_list: print e
 #print(filtered)
 
 def proc_dict(inst_list):
@@ -55,8 +56,8 @@ def proc_dict(inst_list):
     return proc_dict
 
 
-# side effect!: param seq changed.
 def sequence(procdict):
+    # side effect!: param seq changed.
     def _sequence(procdict, ret_seq, history_stack, now_proc):
         history_stack.append(now_proc)
         now_proc_seq = procdict[now_proc]
@@ -70,11 +71,12 @@ def sequence(procdict):
         return ret_seq
     return _sequence(procdict,[],[],"main")
 
-str1proc_dict = proc_dict(inst_list)
-for k, v in str1proc_dict.iteritems():
-    print k
-    print v
+#str1proc_dict = proc_dict(inst_list)
+#for k, v in str1proc_dict.iteritems():
+    #print k
+    #print v
 
+'''
 str1seq = sequence(str1proc_dict)
 str2seq = sequence(
             proc_dict(
@@ -87,9 +89,9 @@ print(str1seq)
 print '-------str2 seq-------'
 print(str2seq)
 
-import comparator
 score = comparator.match_score(str1seq,str2seq)
 print('score is ' + str(score))
+'''
 
 '''
 seq1 = sequence(
@@ -112,15 +114,17 @@ print('match score is ' + str(score))
 print('/min_len similarity is ' + str(float(score)/float(base_len)))
 print('/a+b_len * 2 similarity is ' + str(2 * float(score)/float(len(seq1)+len(seq2))))
 '''
+
+import comparator
 strs = [
-        #(fs1_1,'fs1_1'),
-        #(fs1_2,'fs1_2'),
-        #(fs1_3,'fs1_3'),
-        #(fs1_4,'fs1_4'),
-        #(fs2,'fs2'),
+        (fs1_1,'fs1_1'),
+        (fs1_2,'fs1_2'),
+        (fs1_3,'fs1_3'),
+        (fs1_4,'fs1_4'),
+        (fs2,'fs2'),
         (fs3,'fs3'),
         (fs4,'fs4'),
-        #(fgeeks,'fgeeks'),
+        (fgeeks,'fgeeks'),
         ]
 
 for a in strs:
