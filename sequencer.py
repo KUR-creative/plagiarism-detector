@@ -1,10 +1,15 @@
 import preprocessor
 
-def is_not_inst(s):
-    return (len(s) != 0 and s[0] != '.')
+def is_instruction(string):
+    return (len(string) != 0 and string[0] != '.')
 
-def inst2str(s):
-    splited_arr = s.split('\t')
+def asmline2inst(asmline):
+    ''' 
+    1 line of asm code 
+    -> instruction
+       (or callee function name: in case of 'call')
+    '''
+    splited_arr = asmline.split('\t')
     if splited_arr[0] == 'call':
         return splited_arr[1]
     return splited_arr[0]
@@ -25,8 +30,13 @@ def proc_dict(inst_list):
 
 
 def sequence(procdict):
-    # side effect!: param seq changed.
+    ''' 
+    Procdict's type is { str:[str,str,str...] }
+    Use proc_dict function to get procdict.
+    Return value is list of instruction.
+    '''
     def _sequence(procdict, ret_seq, history_stack, now_proc):
+        ''' side effect!: param seq changed. '''
         history_stack.append(now_proc)
         now_proc_seq = procdict[now_proc]
         for instruction in now_proc_seq:
@@ -42,8 +52,8 @@ def sequence(procdict):
 def make_sequence_from(asm_code_str):
     return sequence(
              proc_dict(
-               map(inst2str,
-                   filter(is_not_inst, 
+               map(asmline2inst,
+                   filter(is_instruction, 
                           map(lambda s:s.lstrip(), 
                               asm_code_str[0].split('\n'))))))
 

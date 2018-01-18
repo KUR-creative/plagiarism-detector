@@ -5,8 +5,12 @@ import subprocess
 # need to optimize performance.
 # use command(only in python 2) or something..
 # or use multiprocessing.
-def get_asm(srcname):
-    ''' srcname example: 'prog_name.cpp' '''
+def get_asm_code(srcname):
+    ''' 
+    Srcname must be name of existing c/c++ source file.
+    If not, it'll raise error.
+    Srcname example: 'prog_name.cpp' 
+    '''
     proc = subprocess.Popen(['g++',
                              '-S','-O2','-std=c++11',
                              '-o-', srcname],
@@ -55,7 +59,7 @@ class preprocessorTest(unittest.TestCase):
         with open(self.srcname, "r") as f:
             data = f.read()
         print(self.srcname)
-        asm_code = get_asm(self.srcname)
+        asm_code = get_asm_code(self.srcname)
         print(asm_code)
 
 if __name__ == '__main__':

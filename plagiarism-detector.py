@@ -1,14 +1,14 @@
 import preprocessor
-fs4 = preprocessor.get_asm('./long/f4.cpp')
-fs3 = preprocessor.get_asm('./long/f3.cpp')
-fs2 = preprocessor.get_asm('./long/f2.cpp')
-fgeeks = preprocessor.get_asm('./long/geeks.cpp')
-fs1_4 = preprocessor.get_asm('./long/1-4.cpp')
-fs1_3 = preprocessor.get_asm('./long/1-3.cpp')
-fs1_2 = preprocessor.get_asm('./long/1-2.cpp')
-fs1_1 = preprocessor.get_asm('./long/1-1.cpp')
-s2 = preprocessor.get_asm('./long/f2.cpp')
-s1 = preprocessor.get_asm('./long/f4.cpp')
+fs4 = preprocessor.get_asm_code('./long/f4.cpp')
+fs3 = preprocessor.get_asm_code('./long/f3.cpp')
+fs2 = preprocessor.get_asm_code('./long/f2.cpp')
+fgeeks = preprocessor.get_asm_code('./long/geeks.cpp')
+fs1_4 = preprocessor.get_asm_code('./long/1-4.cpp')
+fs1_3 = preprocessor.get_asm_code('./long/1-3.cpp')
+fs1_2 = preprocessor.get_asm_code('./long/1-2.cpp')
+fs1_1 = preprocessor.get_asm_code('./long/1-1.cpp')
+s2 = preprocessor.get_asm_code('./long/f2.cpp')
+s1 = preprocessor.get_asm_code('./long/f4.cpp')
 
 import comparator, sequencer
 strs = [
