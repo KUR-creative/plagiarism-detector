@@ -9,12 +9,8 @@ fs1_2 = preprocessor.get_asm('./long/1-2.cpp')
 fs1_1 = preprocessor.get_asm('./long/1-1.cpp')
 s2 = preprocessor.get_asm('./long/f2.cpp')
 s1 = preprocessor.get_asm('./long/f4.cpp')
-##################
-#string = preprocessor.get_asm('./tests/fact.cpp')
-###############
-#str2 = preprocessor.get_asm('./tests/origin.cpp')
 
-import comparator
+import comparator, sequencer
 strs = [
         (fs1_1,'fs1_1'),
         (fs1_2,'fs1_2'),
@@ -25,23 +21,11 @@ strs = [
         (fs4,'fs4'),
         (fgeeks,'fgeeks'),
         ]
-
-from sequencer import * 
-
 for a in strs:
     for b in strs:
-        seq1 = sequence(
-                    proc_dict(
-                      map(inst2str,
-                          filter(is_not_inst, 
-                                 map(lambda s:s.lstrip(), 
-                                     a[0].split('\n'))))))
-        seq2 = sequence(
-                    proc_dict(
-                      map(inst2str,
-                          filter(is_not_inst, 
-                                 map(lambda s:s.lstrip(), 
-                                     b[0].split('\n'))))))
+        seq1 = sequencer.make_sequence_from(a)
+        seq2 = sequencer.make_sequence_from(b)
+
         score = comparator.match_score(seq1,seq2)
         base_len = min(len(seq1),len(seq2))
         print(a[1] + ' vs ' + b[1] + ' match score is\t\t\t' + str(score))

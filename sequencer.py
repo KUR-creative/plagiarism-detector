@@ -39,6 +39,13 @@ def sequence(procdict):
         return ret_seq
     return _sequence(procdict,[],[],"main")
 
+def make_sequence_from(asm_code_str):
+    return sequence(
+             proc_dict(
+               map(inst2str,
+                   filter(is_not_inst, 
+                          map(lambda s:s.lstrip(), 
+                              asm_code_str[0].split('\n'))))))
 
 import unittest
 class sequenceTest(unittest.TestCase):
