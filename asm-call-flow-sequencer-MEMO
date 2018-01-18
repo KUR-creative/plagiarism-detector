@@ -1,6 +1,11 @@
  [src2asm]
 c의 경우, c++로는 안되는 코드는 어쩌냐?(예외)
 
+ [preprocesser]
+소스코드에서 raw data를 만들어 냄.
+g++이나 성혜씨 프로그램 등 외부 프로그램을 호출하고 
+결과를 받음.
+
  [sequencer]
 proc_name:
 jump = call

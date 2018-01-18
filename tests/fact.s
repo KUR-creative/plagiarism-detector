@@ -7,7 +7,7 @@
 	.globl	_Z4factx
 	.type	_Z4factx, @function
 _Z4factx:
-.LFB1048:
+.LFB1453:
 	.cfi_startproc
 	cmpq	$1, %rdi
 	movl	$1, %eax
@@ -23,7 +23,7 @@ _Z4factx:
 .L4:
 	rep ret
 	.cfi_endproc
-.LFE1048:
+.LFE1453:
 	.size	_Z4factx, .-_Z4factx
 	.section	.text.unlikely
 .LCOLDE0:
@@ -37,7 +37,7 @@ _Z4factx:
 	.globl	_Z3fibx
 	.type	_Z3fibx, @function
 _Z3fibx:
-.LFB1049:
+.LFB1454:
 	.cfi_startproc
 	cmpq	$1, %rdi
 	pushq	%r12
@@ -78,7 +78,7 @@ _Z3fibx:
 	xorl	%ebp, %ebp
 	jmp	.L8
 	.cfi_endproc
-.LFE1049:
+.LFE1454:
 	.size	_Z3fibx, .-_Z3fibx
 	.section	.text.unlikely
 .LCOLDE1:
@@ -92,7 +92,7 @@ _Z3fibx:
 	.globl	main
 	.type	main, @function
 main:
-.LFB1050:
+.LFB1455:
 	.cfi_startproc
 	movl	$24, %esi
 	subq	$8, %rsp
@@ -121,7 +121,7 @@ main:
 	.cfi_def_cfa_offset 8
 	ret
 	.cfi_endproc
-.LFE1050:
+.LFE1455:
 	.size	main, .-main
 	.section	.text.unlikely
 .LCOLDE2:
@@ -134,7 +134,7 @@ main:
 	.p2align 4,,15
 	.type	_GLOBAL__sub_I__Z4factx, @function
 _GLOBAL__sub_I__Z4factx:
-.LFB1058:
+.LFB1643:
 	.cfi_startproc
 	subq	$8, %rsp
 	.cfi_def_cfa_offset 16
@@ -147,7 +147,7 @@ _GLOBAL__sub_I__Z4factx:
 	.cfi_def_cfa_offset 8
 	jmp	__cxa_atexit
 	.cfi_endproc
-.LFE1058:
+.LFE1643:
 	.size	_GLOBAL__sub_I__Z4factx, .-_GLOBAL__sub_I__Z4factx
 	.section	.text.unlikely
 .LCOLDE3:
