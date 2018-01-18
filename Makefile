@@ -1,8 +1,8 @@
-t:
+pt:
 	python preprocessor.py
 ct:
 	python comparator.py
-st:
+t:
 	python sequencer.py
 
 ctags:

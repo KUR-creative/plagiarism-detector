@@ -2,4 +2,5 @@
 *.taghl
 *.pyc
 *.vim
+*.s
 tags
