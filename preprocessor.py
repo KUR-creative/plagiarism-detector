@@ -1,6 +1,10 @@
 # it may run process in creating subprocess object...
 import subprocess
 
+# this function is so slow.
+# need to optimize performance.
+# use command(only in python 2) or something..
+# or use multiprocessing.
 def get_asm(srcname):
     ''' srcname example: 'prog_name.cpp' '''
     proc = subprocess.Popen(['g++',
