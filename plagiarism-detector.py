@@ -21,14 +21,15 @@ strs = [
         (fs4,'fs4'),
         (fgeeks,'fgeeks'),
         ]
-for a in strs:
-    for b in strs:
-        seq1 = sequencer.make_sequence_from(a)
-        seq2 = sequencer.make_sequence_from(b)
+import itertools
+for pair in itertools.combinations(strs,2):
+    (a,b) = pair
+    seq1 = sequencer.make_sequence_from(a)
+    seq2 = sequencer.make_sequence_from(b)
 
-        score = comparator.match_score(seq1,seq2)
-        base_len = min(len(seq1),len(seq2))
-        print(a[1] + ' vs ' + b[1] + ' match score is\t\t\t' + str(score))
-        print(a[1] + ' vs ' + b[1] + ' /min_len similarity is\t\t' + str(float(score)/float(base_len)))
-        print(a[1] + ' vs ' + b[1] + ' /a+b_len * 2 similarity is\t' + str(2 * float(score)/float(len(seq1)+len(seq2))))
-        print('------')
+    score = comparator.match_score(seq1,seq2)
+    base_len = min(len(seq1),len(seq2))
+    print(a[1] + ' vs ' + b[1] + ' match score is\t\t\t' + str(score))
+    print(a[1] + ' vs ' + b[1] + ' /min_len similarity is\t\t' + str(float(score)/float(base_len)))
+    print(a[1] + ' vs ' + b[1] + ' /a+b_len * 2 similarity is\t' + str(2 * float(score)/float(len(seq1)+len(seq2))))
+    print('------')
