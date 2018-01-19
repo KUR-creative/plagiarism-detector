@@ -35,6 +35,8 @@ def sequence(procdict):
     Use proc_dict function to get procdict.
     Return value is list of instruction.
     '''
+    if procdict.get('main') == None:
+        return []
     def _sequence(procdict, ret_seq, history_stack, now_proc):
         ''' side effect!: param seq changed. '''
         history_stack.append(now_proc)
@@ -113,6 +115,12 @@ class sequenceTest(unittest.TestCase):
         expected = ['1','2','a','a','3',
                     '7','8','1','2','a','a','3','b',
                     '1','2','a','a','3'] 
+        actual = sequence(proc_dict)
+        self.assertEqual(actual,expected)
+
+    def test_if_compile_failed(self):
+        proc_dict = {}
+        expected = [] 
         actual = sequence(proc_dict)
         self.assertEqual(actual,expected)
 
