@@ -1,7 +1,8 @@
-#test_dir = './candle/'
+test_dir = './candle/'
 #test_dir = './eleccar/'
 #test_dir = './food/'
 
+print('preprocessing...')
 import os
 import preprocessor, comparator, sequencer
 srcnames = os.listdir(test_dir)
@@ -12,6 +13,7 @@ asm_name_pairs = map(lambda srcname:
 #print(len(asm_name_pairs))
 #print(map(lambda x:x[1], asm_name_pairs))
 
+print('computing match scores of all pairs...')
 import itertools 
 scores = []
 for pair in itertools.combinations(asm_name_pairs,2):
@@ -19,7 +21,7 @@ for pair in itertools.combinations(asm_name_pairs,2):
     seq1 = sequencer.make_sequence_from(a)
     seq2 = sequencer.make_sequence_from(b)
 
-    score = comparator.match_score(seq1,seq2)
+    score = comparator.match_score_gene(seq1,seq2)
     scores.append( (score,a,b) )
     #base_len = min(len(seq1),len(seq2))
     #print(a[1] + ' vs ' + b[1] + ' match score is\t\t\t' + str(score))
@@ -35,6 +37,7 @@ for tup in scores:
     
     print( str(score) + ': ' + name_a + ' vs ' + name_b )
 
+print('plotting result.')
 import matplotlib.pyplot as plt
 #data = [100,200,300,400, 1000,1400,1500,1700]
 plt.hist(map(lambda tup: tup[0], scores), bins = 10, width=10.0)

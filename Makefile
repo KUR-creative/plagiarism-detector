@@ -1,6 +1,6 @@
-ft:
-	python plagiarism-detector.py
 t:
+	python plagiarism-detector.py
+ppt:
 	python preprocessor.py
 ct:
 	python comparator.py

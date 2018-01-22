@@ -12,7 +12,7 @@ def dp_variables(a, b):
     #a00000
     #a00000
 
-def match_score(a,b):
+def match_score_gene(a,b):
     ''' a,b must be same sequence type. '''
     (len_a, len_b, memo) = dp_variables(a,b)
 
@@ -35,33 +35,31 @@ def match_score(a,b):
     return memo[len_a][len_b]
 
 import unittest
-class match_scoreTest(unittest.TestCase):
+class match_score_geneTest(unittest.TestCase):
     def test_base_case(self):
-        self.assertEqual(match_score('',''),  0)
-        self.assertEqual(match_score('','a'), 0)
-        self.assertEqual(match_score('b',''), 0)
+        self.assertEqual(match_score_gene('',''),  0)
+        self.assertEqual(match_score_gene('','a'), 0)
+        self.assertEqual(match_score_gene('b',''), 0)
 
-        self.assertEqual(match_score([],[]),    0)
-        self.assertEqual(match_score([],[1]),   0)
-        self.assertEqual(match_score(['2'],[]), 0)
+        self.assertEqual(match_score_gene([],[]),    0)
+        self.assertEqual(match_score_gene([],[1]),   0)
+        self.assertEqual(match_score_gene(['2'],[]), 0)
 
-        self.assertRaises(TypeError, lambda:match_score([],''))
+        self.assertRaises(TypeError, lambda:match_score_gene([],''))
 
     def test_1vs1_cases(self):
-        self.assertEqual(match_score('a','a'), MATCH_REWARD)
-        self.assertEqual(match_score('a','b'), 0)
+        self.assertEqual(match_score_gene('a','a'), MATCH_REWARD)
+        self.assertEqual(match_score_gene('a','b'), 0)
 
-        self.assertEqual(match_score([1],[1]), MATCH_REWARD)
-        self.assertEqual(match_score([1],[2]), 0)
+        self.assertEqual(match_score_gene([1],[1]), MATCH_REWARD)
+        self.assertEqual(match_score_gene([1],[2]), 0)
     
     def test_common_cases(self): 
-        self.assertEqual(match_score('abc','bca'),  2*MATCH_REWARD)
-        self.assertEqual(match_score('xby','xab6y'),3*MATCH_REWARD)
+        self.assertEqual(match_score_gene('abc','bca'),  2*MATCH_REWARD)
+        self.assertEqual(match_score_gene('xby','xab6y'),3*MATCH_REWARD)
 
-        self.assertEqual(match_score([-1,-2,0,7,8,2],
-                                     [0,7,8,-1,-2]),3*MATCH_REWARD)
-
-
+        self.assertEqual(match_score_gene([-1,-2,0,7,8,2],
+                                          [0,7,8,-1,-2]),3*MATCH_REWARD)
 
 class helper_functionsTest(unittest.TestCase):
     def test_dpvariables(self):
