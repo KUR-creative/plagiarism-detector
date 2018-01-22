@@ -63,4 +63,10 @@ class preprocessorTest(unittest.TestCase):
         print(asm_code)
 
 if __name__ == '__main__':
+    #string = subprocess.check_output(['ls', '|', 'sort','-r'], shell=True)
+    #print(string)
+    #ps = subprocess.Popen(('./m1', 'Makefile'), stdout=subprocess.PIPE)
+    #string = subprocess.check_output(('./m2'), stdin=ps.stdout)
+    #ps.wait()
+    #print(string)
     unittest.main()
