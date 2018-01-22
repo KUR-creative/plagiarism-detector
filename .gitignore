@@ -4,3 +4,7 @@
 *.vim
 *.s
 tags
+
+# no data files.
+eleccar/
+food/
