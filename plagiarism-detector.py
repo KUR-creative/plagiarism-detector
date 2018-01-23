@@ -1,6 +1,6 @@
-test_dir = './candle/'
+#test_dir = './candle/'
 #test_dir = './eleccar/'
-#test_dir = './food/'
+test_dir = './food/'
 
 print('preprocessing...')
 import os
@@ -21,7 +21,7 @@ for pair in itertools.combinations(asm_name_pairs,2):
     seq1 = sequencer.make_sequence_from(a)
     seq2 = sequencer.make_sequence_from(b)
 
-    score = comparator.match_score_gene(seq1,seq2)
+    score = comparator.match_score_local(seq1,seq2)
     scores.append( (score,a,b) )
     #base_len = min(len(seq1),len(seq2))
     #print(a[1] + ' vs ' + b[1] + ' match score is\t\t\t' + str(score))

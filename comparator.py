@@ -32,8 +32,8 @@ def match_score_gene(a,b):
                 best_score = max(from_ul,from_l,from_u)
                 memo[y][x] = best_score
 
-    for row in memo:
-        print(row)
+    #for row in memo:
+        #print(row)
     return memo[len_a][len_b]
 
 import itertools
@@ -57,8 +57,8 @@ def match_score_local(a,b):
 
                 best_score = max(from_ul,from_l,from_u,0)
                 memo[y][x] = best_score
-    for row in memo:
-        print(row)
+    #for row in memo:
+        #print(row)
     return max(list(itertools.chain(*memo)))
 
 
