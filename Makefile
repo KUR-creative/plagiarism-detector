@@ -1,8 +1,8 @@
-t:
+pt:
 	python plagiarism-detector.py
 ppt:
 	python preprocessor.py
-ct:
+t:
 	python comparator.py
 st:
 	python sequencer.py

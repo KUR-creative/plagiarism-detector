@@ -34,6 +34,9 @@ def match_score_gene(a,b):
 
     return memo[len_a][len_b]
 
+def match_score_local(a,b):
+    return None
+
 import unittest
 class match_score_geneTest(unittest.TestCase):
     def test_base_case(self):
@@ -60,6 +63,18 @@ class match_score_geneTest(unittest.TestCase):
 
         self.assertEqual(match_score_gene([-1,-2,0,7,8,2],
                                           [0,7,8,-1,-2]),3*MATCH_REWARD)
+
+class match_score_localTest(unittest.TestCase):
+    def test_base_case(self):
+        self.assertEqual(match_score_local('',''),  0)
+        #self.assertEqual(match_score_local('','a'), 0)
+        #self.assertEqual(match_score_local('b',''), 0)
+
+        #self.assertEqual(match_score_local([],[]),    0)
+        #self.assertEqual(match_score_local([],[1]),   0)
+        #self.assertEqual(match_score_local(['2'],[]), 0)
+
+        #self.assertRaises(TypeError, lambda:match_score_gene([],''))
 
 class helper_functionsTest(unittest.TestCase):
     def test_dpvariables(self):
