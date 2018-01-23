@@ -25,15 +25,18 @@ def match_score_gene(a,b):
                 if a[y-1] == b[x-1]:
                     score = MATCH_REWARD
 
-                case1 = memo[y-1][x-1] + score
-                case2 = memo[y  ][x-1]
-                case3 = memo[y-1][x  ]
+                from_ul = memo[y-1][x-1] + score
+                from_l = memo[y  ][x-1]
+                from_u = memo[y-1][x  ]
 
-                best_score = max(case1,case2,case3)
+                best_score = max(from_ul,from_l,from_u)
                 memo[y][x] = best_score
 
+    for row in memo:
+        print(row)
     return memo[len_a][len_b]
 
+import itertools
 def match_score_local(a,b):
     ''' a,b must be same sequence type. '''
     (len_a, len_b, memo) = dp_variables(a,b)
@@ -42,7 +45,22 @@ def match_score_local(a,b):
         for x in range(len_b+1):
             if x == 0 or y == 0:
                 memo[y][x] = 0
-    return memo[y][x]
+            else:
+                if a[y-1] == b[x-1]:
+                    score = 3
+                else:
+                    score = -3
+
+                from_ul= memo[y-1][x-1] + score
+                from_l = memo[y  ][x-1] - 2 #gap penalty 
+                from_u = memo[y-1][x  ] - 2 #gap penalty
+
+                best_score = max(from_ul,from_l,from_u,0)
+                memo[y][x] = best_score
+    for row in memo:
+        print(row)
+    return max(list(itertools.chain(*memo)))
+
 
 import unittest
 class match_score_geneTest(unittest.TestCase):
@@ -82,6 +100,30 @@ class match_score_localTest(unittest.TestCase):
         self.assertEqual(match_score_local(['2'],[]), 0)
 
         self.assertRaises(TypeError, lambda:match_score_local([],''))
+
+    def test_1vs1_cases(self):
+        self.assertEqual(match_score_local('a','a'), 3)
+        self.assertEqual(match_score_local('a','b'), 0)
+
+        self.assertEqual(match_score_local([1],[1]), 3)
+        self.assertEqual(match_score_local([1],[2]), 0)
+
+    def test_common_cases(self): 
+        self.assertEqual(match_score_local('tg','g'),3)
+
+    def test_use_gap_penalty(self):
+        pass # can't test..
+        #self.assertEqual(match_score_local('tgt','g'),3)
+        #self.assertEqual(match_score_local('tg','ggt'),1)
+
+    def test_scoring_scheme(self):
+        # matched case: add score.
+        self.assertEqual(match_score_local('tgt',
+                                           'ggt'),6)
+        # mismatched case: sub score: can't test..
+        self.assertEqual(match_score_local('tgtta',
+                                           'ggttg'),9)
+
 
 class helper_functionsTest(unittest.TestCase):
     def test_dpvariables(self):
