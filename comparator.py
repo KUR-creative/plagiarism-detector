@@ -35,7 +35,14 @@ def match_score_gene(a,b):
     return memo[len_a][len_b]
 
 def match_score_local(a,b):
-    return None
+    ''' a,b must be same sequence type. '''
+    (len_a, len_b, memo) = dp_variables(a,b)
+
+    for y in range(len_a+1):
+        for x in range(len_b+1):
+            if x == 0 or y == 0:
+                memo[y][x] = 0
+    return memo[y][x]
 
 import unittest
 class match_score_geneTest(unittest.TestCase):
@@ -67,14 +74,14 @@ class match_score_geneTest(unittest.TestCase):
 class match_score_localTest(unittest.TestCase):
     def test_base_case(self):
         self.assertEqual(match_score_local('',''),  0)
-        #self.assertEqual(match_score_local('','a'), 0)
-        #self.assertEqual(match_score_local('b',''), 0)
+        self.assertEqual(match_score_local('','a'), 0)
+        self.assertEqual(match_score_local('b',''), 0)
 
-        #self.assertEqual(match_score_local([],[]),    0)
-        #self.assertEqual(match_score_local([],[1]),   0)
-        #self.assertEqual(match_score_local(['2'],[]), 0)
+        self.assertEqual(match_score_local([],[]),    0)
+        self.assertEqual(match_score_local([],[1]),   0)
+        self.assertEqual(match_score_local(['2'],[]), 0)
 
-        #self.assertRaises(TypeError, lambda:match_score_gene([],''))
+        self.assertRaises(TypeError, lambda:match_score_local([],''))
 
 class helper_functionsTest(unittest.TestCase):
     def test_dpvariables(self):
