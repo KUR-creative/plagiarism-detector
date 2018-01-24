@@ -51,6 +51,7 @@ def sequence(procdict):
         return ret_seq
     return _sequence(procdict,[],[],"main")
 
+import subprocess
 def make_sequence_from(asm_code_str):
     return sequence(
              proc_dict(
@@ -59,8 +60,21 @@ def make_sequence_from(asm_code_str):
                           map(lambda s:s.lstrip(), 
                               asm_code_str[0].split('\n'))))))
 
+def get_sequence_from(filename):
+    print('get sequence from ' + filename + '...')
+    ps = subprocess.Popen(('./lex_pro', filename), stdout=subprocess.PIPE)
+    string = subprocess.check_output(('./rerepro'), stdin=ps.stdout)
+    ps.wait()
+    return string
+
+
 import unittest
 class sequenceTest(unittest.TestCase):
+    def test_get_sequence_from(self):
+        print(get_sequence_from('./long/1-1.cpp'))
+        print(get_sequence_from('./long/1-2.cpp'))
+        print(get_sequence_from('./long/1-3.cpp'))
+
     def test_no_proc_call(self):
         proc_dict = {'main':['1','2','3','4'],
                      'p'   :['10','20','30']}
